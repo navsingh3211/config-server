@@ -4,7 +4,6 @@ spring:
   cloud:
     config:
       server:
-        bootstrap: true
         git:
           uri: https://github.com/navsingh3211/cxp-config
 
