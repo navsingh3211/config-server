@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/navsingh3211/cxp-config
+
+server:
+  port: 8888
