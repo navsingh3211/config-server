@@ -1,26 +1,42 @@
 spring:
   application:
     name: config-server
-  profiles:
-    active: jdbc
-  datasource:
-    url: jdbc:mysql://localhost:3306/configdb
-    username: navsingh3211
-    password: yourpassword
-    driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     config:
       server:
-        jdbc:
-          sql: "SELECT  PROP_KEY,PROP_VALUE FROM PROPERTIES WHERE APPLICATION=? AND PROFILE=? AND LABEL=?"
-          default-label: main
+        git:
+#          uri: https://github.com/navsingh3211/cxp-config
+          uri: file:/usr/local/src/myWork/MicroServices/cxp-config
+#          username: ${GIT_USER}
+#          password: ${GIT_TOKEN}
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,refresh,busrefresh"
+
+#mysql db connection and config management
+
+#  profiles:
+#    active: jdbc
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/configdb
+#    username: navsingh3211
+#    password: yourpassword
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 #  cloud:
 #    config:
 #      server:
-#        git:
-#          uri: https://github.com/navsingh3211/cxp-config
-#          username: ${GIT_USER}
-#          password: ${GIT_TOKEN}
+#        jdbc:
+#          sql: "SELECT  PROP_KEY,PROP_VALUE FROM PROPERTIES WHERE APPLICATION=? AND PROFILE=? AND LABEL=?"
+#          default-label: main
 
 server:
   port: 8888
